@@ -22,8 +22,7 @@ import br.unitins.topicos1.farmacia.model.Usuario;
 @Named
 public class CarrinhoController implements Serializable {
 
-	private static final long serialVersionUID = -5026285540821281897L;
-
+	private static final long serialVersionUID = -3495986737497422236L;
 	private Compra carrinho;
 
 	public List<ItemCompra> getItensCarrinho() {
