@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="newtemplate.xhtml">
+	<ui:define name="content">
+
+
+		<h1 style="text-align: center;">Carrinho de Compras</h1>
+		<h1 style="text-align: center;">
+			<p:commandButton value="Finalizar Compra">
+				<p:confirm header="Login requerido"
+					rendered="#{carrinhoController.usuarioLogado != null}"
+					message="Antes de continuar, você deve fazer login"
+					icon="pi pi-exclamation" />
+			</p:commandButton>
+		</h1>
+		<h:form id="formDataTable">
+			<div class="card">
+				<p:dataTable var="item" value="#{carrinhoController.itensCarrinho}">
+					<p:column>
+						<p:graphicImage library="images" name="remedio.png" width="15%" />
+					</p:column>
+
+					<p:column headerText="Produto">
+						<h:outputText value="#{item.remedio.nome}" />
+					</p:column>
+
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{item.quantidade}" />
+					</p:column>
+
+					<p:column headerText="Preço">
+						<h:outputText style="font-weight: bold; "
+							value="#{item.remedio.preco}">
+							<f:convertNumber currencySymbol="R$" type="currency" />
+						</h:outputText>
+					</p:column>
+
+					<p:column headerText="Ação">
+
+						<p:commandButton title="Remover" type="button" icon="pi pi-minus"
+							styleClass="rounded-button ui-button-danger ui-button-outlined" />
+						<span />
+						<p:commandButton title="Adicionar" type="button" icon="pi pi-plus"
+							actionListener="#{carrinhoController.adicionarCarrinho(item.remedio)}"
+							process="@this" update="@([id$=carrinhoContador])"
+							styleClass="rounded-button" />
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>

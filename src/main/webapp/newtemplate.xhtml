@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:head>
+	<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial;
+	padding: 10px;
+	background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+	padding: 30px;
+	text-align: center;
+	background: white;
+}
+
+.header h1 {
+	font-size: 50px;
+}
+
+/* Style the top navigation bar */
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+	float: left;
+	width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+	float: left;
+	width: 25%;
+	background-color: #f1f1f1;
+	padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+	background-color: #aaa;
+	width: 100%;
+	padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+	background-color: white;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Footer */
+.footer {
+	padding: 20px;
+	text-align: center;
+	background: #ddd;
+	margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+	.leftcolumn, .rightcolumn {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+	.topnav a {
+		float: none;
+		width: 100%;
+	}
+}
+
+.ui-dataview .ui-dataview-header {
+	display: none;
+}
+
+.jumbotron {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #f4511e; /* Orange */
+	color: #ffffff;
+	margin-bottom: 0;
+}
+</style>
+	<h:outputStylesheet library="webjars"
+		name="primeflex/3.2.0/primeflex.min.css" />
+</h:head>
+<h:body>
+
+	<div class="header jumbotron">
+		<h1>Farmácia</h1>
+		<p>Preço baixo é aqui!</p>
+	</div>
+
+	<h:form>
+		<div class="topnav">
+			<a href="home.xhtml">Home</a>
+
+			<div style="float: right">
+
+				<a href="carrinho.xhtml"> <i class="pi pi-shopping-cart" /> <p:badge
+						styleClass="mr-1" style="font-size: 10px" id="carrinhoContador"
+						value="#{templateController.getQuantidadeCarrinho()}">
+					</p:badge>
+				</a> <a> <h:outputLabel
+						rendered="#{templateController.usuarioLogado != null}">
+     
+      			Olá #{templateController.usuarioLogado.nome}
+      		</h:outputLabel>
+				</a> <a> <h:commandLink
+						rendered="#{templateController.usuarioLogado != null}"
+						action="#{templateController.encerrarSessao}">
+        		
+        		Sair
+        	</h:commandLink>
+				</a>
+
+			</div>
+		</div>
+	</h:form>
+	<div class="row">
+
+		<div class="card">
+			<ui:insert name="content">
+
+
+			</ui:insert>
+		</div>
+
+	</div>
+
+	<div class="footer">
+		<h2>Footer</h2>
+	</div>
+
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+		responsive="true" width="350">
+		<p:commandButton value="No" type="button"
+			styleClass="ui-confirmdialog-no ui-button-flat" />
+		<p:commandButton value="Yes" type="button"
+			styleClass="ui-confirmdialog-yes" />
+	</p:confirmDialog>
+
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+		responsive="true" width="350">
+		<p:commandButton value="Não" type="button"
+			styleClass="ui-confirmdialog-no ui-button-flat" />
+		<p:commandButton value="Sim" type="button"
+			styleClass="ui-confirmdialog-yes" />
+	</p:confirmDialog>
+
+</h:body>
+</html>

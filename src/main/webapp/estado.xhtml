@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="styleLogin.css" />
+</h:head>
+<h:body>
+	<h:form>
+		<h1 style="width: 80%; text-align: center;">Usuários</h1>
+		<h:messages id="messages" errorStyle="color:red" infoStyle="color:green" warnStyle="color:yellow" showDetail="false"/>
+		<h:panelGrid width="80%" styleClass="right" columns="3">
+			<h:inputText style="width:100%"/>
+			<h:commandButton style="width:90%" value="Pesquisar"/>
+			<h:button 
+				value="Adicionar"
+				onclick="PF('dlg1').show()"/>
+		</h:panelGrid>
+
+		<h:dataTable  
+			width="80%"
+			styleClass="table"
+			headerClass="tableHeader"
+			rowClasses="tableOddRow, tableEvenRow"
+			id="dataTable"
+			value="#{usuariosController.listaUsuario}"
+			var="obj">
+			<h:column >
+				<f:facet name="header">Id</f:facet> 
+				<h:outputLabel value="#{obj.id}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet> 
+				<h:outputLabel value="#{obj.nome}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Data Nascimento</f:facet> 
+				<h:outputLabel value="#{obj.dataNascimento}">
+					<f:convertDateTime type="localDate" pattern="dd-MM"/>
+				</h:outputLabel>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Perfil</f:facet> 
+				<h:outputLabel value="#{obj.perfil.label}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Estado</f:facet> 
+				<h:outputLabel value="#{obj.estado.nome} - #{obj.estado.sigla}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">login</f:facet> 
+				<h:outputLabel value="#{obj.login}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Senha</f:facet> 
+				<h:outputLabel value="#{obj.senha}"/>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ação</f:facet> 
+				<h:commandButton 
+					value="Editar"
+					action="#{usuariosController.editar(obj)}">
+					<f:ajax  execute="@this" render="@form:pgPrincipal" />
+				</h:commandButton>
+				<h:commandButton 
+					value="Excluir"
+					actionListener="#{usuariosController.excluir(obj)}"/>
+			</h:column>
+		</h:dataTable>	
+		<p:dialog header="Header" widgetVar="dlg1" minHeight="40" width="350" showEffect="fade">	
+			<div class="container">
+				<p:card style="width: 25em" styleClass="box" title="Cadastro de Estado">
+					<span class="ui-float-label"> 
+						<p:inputText 
+							id="nome"
+							style="width:100%"/>
+						<p:outputLabel 
+							for="@previous"
+							value="Nome" />
+					</span>
+					<br/>
+					<span class="ui-float-label"> 
+						<p:password style="width:100%"
+							id="sigla" /> 
+						<p:outputLabel 
+							for="@previous"
+							value="sigla" />
+					</span>
+					<f:facet name="footer">
+						<p:commandButton 
+							icon="pi pi-check" 
+							value="Salvar" 
+							process="@this nome sigla"
+							action="#{loginController.salvar}"/>
+						<p:commandButton 
+							icon="pi pi-times" 
+							resetValues="true"
+							value="Cancelar"
+							styleClass="ui-button-secondary" style="margin-left: .5em" />
+					</f:facet>
+				</p:card>
+			</div>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
