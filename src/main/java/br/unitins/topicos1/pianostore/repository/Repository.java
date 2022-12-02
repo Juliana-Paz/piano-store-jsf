@@ -10,7 +10,7 @@ public class Repository<T> {
 	
 	protected EntityManager getEntityManager() {
 		if (entityManager == null) {
-			EntityManagerFactory emf = Persistence.createEntityManagerFactory("Farmacia");
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("PianoStore");
 			entityManager = emf.createEntityManager();
 		}
 		return entityManager;

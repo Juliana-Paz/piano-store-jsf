@@ -23,7 +23,7 @@
 
 			<!-- BD Name -->
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:postgresql://localhost:5432/farmaciadb" />
+				value="jdbc:postgresql://localhost:5432/pianostore" />
 
 			<!-- DB User -->
 			<property name="javax.persistence.jdbc.user"
@@ -38,7 +38,7 @@
 				value="org.hibernate.dialect.PostgreSQLDialect" />
 
 			<!-- create / create-drop / update / none -->
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 
 			<!-- Show SQL in console -->
 			<property name="hibernate.show_sql" value="true" />

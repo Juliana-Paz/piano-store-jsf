@@ -10,12 +10,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class Util {
 
-	public static void main(String[] args) {
-		System.out.println(DigestUtils.sha256Hex("ana"));
-		System.out.println(DigestUtils.sha256Hex("ana"));
-		System.out.println(DigestUtils.sha256Hex("Ana"));
 
-	}
 
 	public static void redirect(String page) {
 		try {
