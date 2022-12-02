@@ -42,13 +42,16 @@
 
 					<p:column headerText="Ação">
 
-						<p:commandButton title="Remover" type="button" icon="pi pi-minus"
+						<p:commandButton title="Adicionar" icon="pi pi-minus"
+							actionListener="#{carrinhoController.removerCarrinho(item.remedio)}"
+							process="@this" update="@([id$=carrinhoContador]) formDataTable"
 							styleClass="rounded-button ui-button-danger ui-button-outlined" />
+
 						<span />
-						<p:commandButton title="Adicionar" type="button" icon="pi pi-plus"
+						<p:commandButton title="Adicionar" icon="pi pi-plus"
 							actionListener="#{carrinhoController.adicionarCarrinho(item.remedio)}"
-							process="@this" update="@([id$=carrinhoContador])"
-							styleClass="rounded-button" />
+							process="@this" update="@([id$=carrinhoContador]) formDataTable"
+							styleClass="rounded-button ui-button-primary ui-button-outlined" />
 					</p:column>
 				</p:dataTable>
 			</div>

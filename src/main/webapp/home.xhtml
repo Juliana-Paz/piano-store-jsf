@@ -35,9 +35,36 @@
 
 							<p:commandButton value="Adicionar ao Carrinho"
 								icon="pi pi-shopping-cart"
-								style="font-size: medium; margin-top: 10px;"
+								style="font-size: medium; margin-top: 10px; width: 50%;"
 								actionListener="#{homeController.adicionarCarrinho(remedio)}"
 								process="@this" update="@([id$=carrinhoContador])" />
+
+							<p:commandButton value="Ver detalhes" type="button"
+								icon="pi pi-plus"
+								style="font-size: medium; margin-top: 10px; width: 50%;"
+								onclick="PF('#{remedio.id}').show()" />
+
+							<p:dialog header="#{remedio.nome}" widgetVar="#{remedio.id}"
+								minHeight="40" width="350" showEffect="fade">
+								<p style="text-align: justify;">
+									<h:outputText value="Descrição: " style="font-weight: bold;" />
+									<h:outputText value="#{remedio.descricao}" />
+
+								</p>
+								<p style="text-align: left;">
+									<h:outputText value="Preço " style="font-weight: bold;" />
+									<h:outputText value="#{remedio.preco}">
+										<f:convertNumber currencySymbol="R$" type="currency" />
+									</h:outputText>
+								</p>
+
+								<p style="text-align: left;">
+									<h:outputText value="Quantidade em Estoque "
+										style="font-weight: bold;" />
+									<h:outputText value="#{remedio.estoque}" />
+								</p>
+
+							</p:dialog>
 						</h:panelGrid>
 					</p:card>
 				</p:dataViewGridItem>

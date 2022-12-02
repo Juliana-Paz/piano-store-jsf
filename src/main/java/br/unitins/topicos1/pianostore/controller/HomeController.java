@@ -26,10 +26,6 @@ public class HomeController {
 	private RemedioRepository repository;
 	private List<Remedio> listaRemedio;
 
-	public HomeController() {
-		System.out.println("Contrutor");
-	}
-
 	@PostConstruct
 	public void init() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();

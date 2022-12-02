@@ -21,7 +21,7 @@ import br.unitins.topicos1.pianostore.model.Usuario;
 @Named
 public class CarrinhoController implements Serializable {
 
-	private static final long serialVersionUID = -3495986737497422236L;
+	private static final long serialVersionUID = -3985985036777802588L;
 	private Compra carrinho;
 
 	public List<ItemCompra> getItensCarrinho() {
@@ -34,21 +34,19 @@ public class CarrinhoController implements Serializable {
 
 		return carrinho.getListaItemCompra();
 	}
-	
+
 	public void finalizarCompra() {
-		if (Session.getInstance().get("usuarioLogado") == null) 
+		if (Session.getInstance().get("usuarioLogado") == null)
 			Util.redirect("login2.xhtml");
-		
+
 		Compra carrinho = (Compra) Session.getInstance().get("carrinho");
-		
-		if (carrinho == null || 
-				carrinho.getListaItemCompra() == null ||
-					carrinho.getListaItemCompra().isEmpty()) {
+
+		if (carrinho == null || carrinho.getListaItemCompra() == null || carrinho.getListaItemCompra().isEmpty()) {
 			Util.addWarnMessage("Adicione um item no carrinho antes de concluir a compra.");
 			return;
 		}
-		
-		Util.redirect("finalizarcompra.xhtml");		
+
+		Util.redirect("finalizarcompra.xhtml");
 	}
 
 	public Double getTotalCarrinho() {
@@ -73,51 +71,84 @@ public class CarrinhoController implements Serializable {
 	}
 
 	public void adicionarCarrinho(Remedio remedio) {
-System.out.println("AAQUI");
 		Compra carrinho;
-		
 		Session session = Session.getInstance();
-		if (session.get("carrinho") != null){
-			carrinho = (Compra) session.get("carrinho"); 
+		if (session.get("carrinho") != null) {
+			carrinho = (Compra) session.get("carrinho");
 		} else {
 			carrinho = new Compra();
 		}
-		
+
 		// verificando se existe itens de compra
 		if (carrinho.getListaItemCompra() == null)
 			carrinho.setListaItemCompra(new ArrayList<ItemCompra>());
-		
-			
+
 		// buscando um item na lista do carrinho
 		Optional<ItemCompra> opItem = carrinho.getListaItemCompra().stream()
 				.filter(item -> item.getRemedio().equals(remedio)).findAny();
-		
+
 		ItemCompra item = opItem.orElse(new ItemCompra());
-		
+
 		item.setPreco(remedio.getPreco());
 		item.setRemedio(remedio);
-		item.setQuantidade(item.getQuantidade()+1);
-			
-		
+		item.setQuantidade(item.getQuantidade() + 1);
+
 		// buscando se existe um item no carrinho para alterar
-		int indice = -1; 
+		int indice = -1;
 		for (int index = 0; index < carrinho.getListaItemCompra().size(); index++) {
 			if (carrinho.getListaItemCompra().get(index).getRemedio().equals(remedio)) {
 				indice = index;
 				break;
 			}
 		}
-		
+
 		if (indice >= 0)
 			carrinho.getListaItemCompra().set(indice, item);
 		else
 			carrinho.getListaItemCompra().add(item);
-		
+
 		// adicionando na sessao
 		session.put("carrinho", carrinho);
-		
-		Util.addInfoMessage(item.getRemedio().getNome()+ " adicionado ao carrinho.");
-		
+
+		Util.addInfoMessage(item.getRemedio().getNome() + " adicionado ao carrinho.");
 	}
 
+	public void removerCarrinho(Remedio remedio) {
+		Compra carrinho;
+		Session session = Session.getInstance();
+		if (session.get("carrinho") != null) {
+			carrinho = (Compra) session.get("carrinho");
+		} else {
+			carrinho = new Compra();
+		}
+
+		if (carrinho.getListaItemCompra() == null)
+			carrinho.setListaItemCompra(new ArrayList<ItemCompra>());
+
+		Optional<ItemCompra> opItem = carrinho.getListaItemCompra().stream()
+				.filter(item -> item.getRemedio().equals(remedio)).findAny();
+		
+		ItemCompra item = opItem.orElse(new ItemCompra());
+
+		int novaQuantidade = item.getQuantidade() - 1;
+
+		item.setQuantidade(novaQuantidade);
+
+		int indice = -1;
+		for (int index = 0; index < carrinho.getListaItemCompra().size(); index++) {
+			if (carrinho.getListaItemCompra().get(index).getRemedio().equals(remedio)) {
+				indice = index;
+				break;
+			}
+		}
+
+		if (novaQuantidade >=1)
+			carrinho.getListaItemCompra().set(indice, item);
+		else 
+			carrinho.getListaItemCompra().remove(indice);
+
+		session.put("carrinho", carrinho);
+
+		Util.addInfoMessage(item.getRemedio().getNome() + " removido do carrinho.");
+	}
 }
