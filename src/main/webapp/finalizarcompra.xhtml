@@ -6,80 +6,81 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="newtemplate.xhtml">
-<ui:define name="content">
+	<ui:define name="content">
 
-	<h1 style="text-align: center; margin: unset; ">Finalizar Compra</h1>
-	
-	<h:form id="formDataTable">
-		<div >
-		    <p:card 
-		    	style="width: 100%; margin-bottom: 1em; " >
-	    	    <f:facet name="title">
+		<h1 style="text-align: center; margin: unset;">Finalizar Compra</h1>
 
-			      <h3 class="text-center wdi-red">Produtos no Carrinho</h3>
+		<h:form id="formDataTable">
+			<div>
+				<p:card style="width: 100%; margin-bottom: 1em; ">
+					<f:facet name="title">
 
-			   </f:facet>
-				
-		        <p:dataTable var="item" value="#{finalizarCompraController.itensCarrinho}">
-		            <p:column >
-		               <p:graphicImage library="images" name="remedio.png" width="15%" /> 
-		            </p:column>
-		
-		            <p:column headerText="Produto">
-		                <h:outputText value="#{item.remedio.nome}" />
-		            </p:column>
-		
-		            <p:column headerText="Quantidade">
-		                <h:outputText value="#{item.quantidade}" />
-		            </p:column>
-		
-		            <p:column headerText="Preço">
-	                    <h:outputText style="font-weight: bold; " value="#{item.remedio.preco}" >
-	                		<f:convertNumber  currencySymbol="R$" type="currency"/>
-	                	</h:outputText>
-		            </p:column>
-		        </p:dataTable>
-		    </p:card>
-		</div>
-		<div >
-		    <p:card style="text-align: center; width: 100%; margin-bottom: 2em">
-	    	    <f:facet name="title">
-			      <h3 style="text-align: center; margin: unset; ">Pagamento</h3>
-			   </f:facet>
-			   
-			   <p:panelGrid columns="2" style="display: inline-block; border: 0px;">
-				   
-	                <p:outputLabel value="Quantidade de Parcelas: " />
-	                <p:inputText style="width: 200px" value="#{finalizarCompraController.pagamento.quantidadeParcela}" />
-	                
-	                <p:outputLabel value="Tipo de Pagamento: " />
-					<p:selectOneMenu 
-                   		value="#{finalizarCompraController.pagamento.tipoPagamento}">
-                        <f:selectItems 
-                        	value="#{finalizarCompraController.listaTipoPagamento}"
-                        	var="tipo"
-                        	itemLabel="#{tipo.label}"/>
-                    </p:selectOneMenu>	
-                            
-                    <p:outputLabel value="Bandeira Cartão: " />        
-                    <p:selectOneMenu 
-                    		value="#{finalizarCompraController.pagamento.bandeiraCartao}">
-                         <f:selectItem itemLabel="" itemValue="" />
-                         <f:selectItems value="#{finalizarCompraController.listaBandeiraCartao}"/>
-                     </p:selectOneMenu>  
+						<h3 class="text-center wdi-red">Produtos no Carrinho</h3>
 
-                </p:panelGrid>
-		    </p:card>
-		    <div style="text-align: center;">
-	          	<p:commandButton 
-		    		actionListener="#{finalizarCompraController.finalizarCompra}"
-		    		value="Finalizar Compra"
-		    		process="@form"
-		    		update="growl"/>
-	    	</div>
-	   	</div>
-	</h:form>
-</ui:define>
-</ui:composition>	
-	
+					</f:facet>
+
+					<p:dataTable var="item"
+						value="#{finalizarCompraController.itensCarrinho}">
+						<p:column>
+							<p:graphicImage library="images" name="remedio.png" width="15%" />
+						</p:column>
+
+						<p:column headerText="Produto">
+							<h:outputText value="#{item.remedio.nome}" />
+						</p:column>
+
+						<p:column headerText="Quantidade">
+							<h:outputText value="#{item.quantidade}" />
+						</p:column>
+
+						<p:column headerText="Preço">
+							<h:outputText style="font-weight: bold; "
+								value="#{item.remedio.preco}">
+								<f:convertNumber currencySymbol="R$" type="currency" />
+							</h:outputText>
+						</p:column>
+					</p:dataTable>
+				</p:card>
+			</div>
+			<div>
+				<p:card style="text-align: center; width: 100%; margin-bottom: 2em">
+					<f:facet name="title">
+						<h3 style="text-align: center; margin: unset;">Pagamento</h3>
+					</f:facet>
+
+					<p:panelGrid columns="2"
+						style="display: inline-block; border: 0px;">
+
+						<p:outputLabel value="Quantidade de Parcelas: " />
+						<p:inputText style="width: 200px"
+							value="#{finalizarCompraController.pagamento.quantidadeParcela}" />
+
+						<p:outputLabel value="Tipo de Pagamento: " />
+						<p:selectOneMenu
+							value="#{finalizarCompraController.pagamento.tipoPagamento}">
+							<f:selectItems
+								value="#{finalizarCompraController.listaTipoPagamento}"
+								var="tipo" itemLabel="#{tipo.label}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Bandeira Cartão: " />
+						<p:selectOneMenu
+							value="#{finalizarCompraController.pagamento.bandeiraCartao}">
+							<f:selectItem itemLabel="" itemValue="" />
+							<f:selectItems
+								value="#{finalizarCompraController.listaBandeiraCartao}" />
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+				</p:card>
+				<div style="text-align: center;">
+					<p:commandButton
+						actionListener="#{finalizarCompraController.finalizarCompra}"
+						value="Finalizar Compra" process="@form" update="growl" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
 </html>
