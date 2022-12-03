@@ -7,6 +7,7 @@ import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import br.unitins.topicos1.pianostore.application.Util;
 import br.unitins.topicos1.pianostore.model.Compra;
 
 @Named
@@ -24,7 +25,11 @@ public class CompraFinalizadaController implements Serializable {
 		flash.keep("flashCompraFinalizada");
 		setCompra((Compra) flash.get("flashCompraFinalizada"));
 	}
-
+	
+	
+	public void irParaHistorico() {
+		Util.redirect("historico.xhtml");
+	}
 	
 	public Compra getCompra() {
 		return compra;

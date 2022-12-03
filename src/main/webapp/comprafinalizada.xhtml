@@ -77,10 +77,6 @@
 											value="#{compraFinalizadaController.compra.pagamento.quantidadeParcela}" />
 									</p>
 
-
-
-
-
 									<p style="text-align: left;">
 										<h:outputText style="font-weight: bold;"
 											value="Data da Compra: " />
@@ -90,9 +86,16 @@
 												pattern="dd-MM-yyyy hh:mm:ss" />
 										</h:outputLabel>
 									</p>
+
+									<p:commandButton value="Ver Histórico de Compras"
+										actionListener="#{compraFinalizadaController.irParaHistorico}" />
 								</div>
+
 							</div>
+
+
 						</div>
+
 					</h:form>
 				</div>
 			</div>

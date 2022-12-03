@@ -33,10 +33,7 @@
 								</h:outputLabel>
 							</p:column>
 
-							<p:column>
-								<f:facet name="header">Usuario</f:facet>
-								<h:outputLabel value="#{obj.usuario.nome}" />
-							</p:column>
+
 
 							<p:column>
 								<f:facet name="header">Total da Compra</f:facet>
@@ -47,11 +44,53 @@
 							</p:column>
 
 							<p:column>
+								<f:facet name="header">Tipo de Pagamento</f:facet>
+								<h:outputLabel value="#{obj.pagamento.tipoPagamento}" />
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">Quantidade de Parcelas</f:facet>
+								<h:outputLabel value="#{obj.pagamento.quantidadeParcela}" />
+							</p:column>
+
+							<p:column>
 								<f:facet name="header">Ação</f:facet>
-								<p:commandButton value="Detalhes ..."
-									action="#{historicoController.detalhes(obj)}">
-									<f:ajax execute="@this" render="@none" />
-								</p:commandButton>
+
+
+								<p:commandButton value="Ver produtos" type="button"
+									icon="pi pi-plus"
+									style="font-size: medium; margin-top: 10px; width: 50%;"
+									onclick="PF('#{obj.id}').show()" />
+
+								<p:dialog header="Detalhes da compra" widgetVar="#{obj.id}"
+									minHeight="40" width="850" showEffect="fade">
+									<p:dataTable var="item" value="#{obj.listaItemCompra}">
+										<p:column headerText="Produto">
+											<h:outputText value="#{item.remedio.nome}" />
+										</p:column>
+
+										<p:column headerText="Quantidade">
+											<h:outputText value="#{item.quantidade}" />
+										</p:column>
+
+
+										<p:column headerText="Preço (Unidade)">
+											<h:outputText value="#{item.remedio.preco}">
+												<f:convertNumber currencySymbol="R$" type="currency" />
+											</h:outputText>
+										</p:column>
+
+
+										<p:column headerText="Preço Total">
+											<h:outputText style="font-weight: bold; "
+												value="#{item.remedio.preco * item.quantidade}">
+												<f:convertNumber currencySymbol="R$" type="currency" />
+											</h:outputText>
+										</p:column>
+
+									</p:dataTable>
+								</p:dialog>
+
 							</p:column>
 						</p:dataTable>
 
