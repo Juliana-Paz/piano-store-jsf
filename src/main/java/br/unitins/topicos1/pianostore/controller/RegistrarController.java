@@ -1,0 +1,51 @@
+package br.unitins.topicos1.pianostore.controller;
+
+import java.util.Map;
+
+import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Named;
+
+import br.unitins.topicos1.pianostore.application.RepositoryException;
+import br.unitins.topicos1.pianostore.application.Util;
+import br.unitins.topicos1.pianostore.model.Perfil;
+import br.unitins.topicos1.pianostore.model.Usuario;
+import br.unitins.topicos1.pianostore.repository.UsuarioRepository;
+
+@Named
+@RequestScoped
+public class RegistrarController {
+
+	private Usuario usuario;
+
+	public String registrar() {
+		getUsuario().setPerfil(Perfil.CLIENTE);
+		getUsuario().setSenha(Util.hash(getUsuario().getSenha()));
+		UsuarioRepository repo = new UsuarioRepository();
+		
+		try {
+			repo.salvar(getUsuario());
+			Util.addInfoMessage("Usuário criado com sucesso.");
+
+			Map session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+			session.put("usuarioLogado", getUsuario());
+			return "home.xhtml?faces-redirect=true";
+
+		} catch (Exception e) {
+			Util.addErrorMessage(e.getMessage());
+		}
+		
+		return "registrar.xhtml?faces-redirect=true";
+	}
+
+	public Usuario getUsuario() {
+		if (usuario == null)
+			usuario = new Usuario();
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+}
