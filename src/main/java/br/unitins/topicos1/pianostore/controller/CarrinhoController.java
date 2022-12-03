@@ -37,7 +37,7 @@ public class CarrinhoController implements Serializable {
 
 	public void finalizarCompra() {
 		if (Session.getInstance().get("usuarioLogado") == null)
-			Util.redirect("login2.xhtml");
+			Util.redirect("login.xhtml");
 
 		Compra carrinho = (Compra) Session.getInstance().get("carrinho");
 

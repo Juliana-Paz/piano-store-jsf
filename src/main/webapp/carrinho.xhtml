@@ -7,15 +7,15 @@
 
 <ui:composition template="newtemplate.xhtml">
 	<ui:define name="content">
-
-
 		<h1 style="text-align: center;">Carrinho de Compras</h1>
 		<h1 style="text-align: center;">
-			<p:commandButton value="Finalizar Compra">
-				<p:confirm header="Login requerido"
-					rendered="#{carrinhoController.usuarioLogado != null}"
-					message="Antes de continuar, você deve fazer login"
-					icon="pi pi-exclamation" />
+			<p:commandButton value="Finalizar Compra"
+				actionListener="#{carrinhoController.finalizarCompra}"
+				update="growl">
+				<p:confirm disabled="#{templateController.usuarioLogado != null}"
+					header="Logar no Sistema"
+					message="Para concluir, é necessário estar logado. Deseja ir para a tela de login?"
+					icon="pi pi-exclamation-triangle" />
 			</p:commandButton>
 		</h1>
 		<h:form id="formDataTable">
@@ -34,8 +34,7 @@
 					</p:column>
 
 					<p:column headerText="Preço (Unidade)">
-						<h:outputText
-							value="#{item.remedio.preco}">
+						<h:outputText value="#{item.remedio.preco}">
 							<f:convertNumber currencySymbol="R$" type="currency" />
 						</h:outputText>
 					</p:column>

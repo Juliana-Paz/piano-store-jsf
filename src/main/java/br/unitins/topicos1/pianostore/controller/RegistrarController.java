@@ -1,12 +1,12 @@
 package br.unitins.topicos1.pianostore.controller;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import br.unitins.topicos1.pianostore.application.RepositoryException;
 import br.unitins.topicos1.pianostore.application.Util;
 import br.unitins.topicos1.pianostore.model.Perfil;
 import br.unitins.topicos1.pianostore.model.Usuario;
@@ -14,8 +14,12 @@ import br.unitins.topicos1.pianostore.repository.UsuarioRepository;
 
 @Named
 @RequestScoped
-public class RegistrarController {
+public class RegistrarController implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6039479895836092936L;
 	private Usuario usuario;
 
 	public String registrar() {

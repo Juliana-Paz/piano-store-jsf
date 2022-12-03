@@ -33,14 +33,32 @@
 							<h:outputText value="#{item.quantidade}" />
 						</p:column>
 
-						<p:column headerText="Preço">
-							<h:outputText style="font-weight: bold; "
-								value="#{item.remedio.preco}">
+
+						<p:column headerText="Preço (Unidade)">
+							<h:outputText value="#{item.remedio.preco}">
 								<f:convertNumber currencySymbol="R$" type="currency" />
 							</h:outputText>
 						</p:column>
+
+
+						<p:column headerText="Preço Total">
+							<h:outputText style="font-weight: bold; "
+								value="#{item.remedio.preco * item.quantidade}">
+								<f:convertNumber currencySymbol="R$" type="currency" />
+							</h:outputText>
+						</p:column>
+
 					</p:dataTable>
+					<p style="text-align: right;">
+						Total da Compra:
+						<h:outputText style="font-weight: bold; "
+							value="#{carrinhoController.getTotalCarrinho()}">
+							<f:convertNumber currencySymbol="R$" type="currency" />
+						</h:outputText>
+					</p>
+
 				</p:card>
+
 			</div>
 			<div>
 				<p:card style="text-align: center; width: 100%; margin-bottom: 2em">
