@@ -10,8 +10,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class Util {
 
-
-
 	public static void redirect(String page) {
 		try {
 			FacesContext.getCurrentInstance().getExternalContext().redirect(page);
