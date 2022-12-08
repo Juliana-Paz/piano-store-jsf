@@ -21,7 +21,6 @@ public class FormUsuarioController implements Serializable {
 
 	private static final long serialVersionUID = -4197665569375141413L;
 	private Usuario usuario = null;
-	private List<Estado> listaEstado;
 
 	public FormUsuarioController() {
 		// obtendo um usuario do flash scoped
@@ -31,14 +30,6 @@ public class FormUsuarioController implements Serializable {
 		setUsuario((Usuario) flash.get("flashUsuario"));
 	}
 
-	public List<Estado> getListaEstado() {
-		if (listaEstado == null) {
-			EstadoRepository repo = new EstadoRepository();
-			listaEstado = repo.buscarTodos();
-		}
-		return listaEstado;
-	}
-
 	public Perfil[] getListaPerfil() {
 		return Perfil.values();
 	}
@@ -46,6 +37,7 @@ public class FormUsuarioController implements Serializable {
 	public String salvar() {
 		UsuarioRepository repo = new UsuarioRepository();
 		try {
+			getUsuario().setSenha(Util.hash(getUsuario().getSenha()));
 			repo.salvar(getUsuario());
 		} catch (Exception e) {
 			Util.addErrorMessage(e.getMessage());
@@ -63,7 +55,7 @@ public class FormUsuarioController implements Serializable {
 	}
 
 	public String cancelar() {
-		return "usuarios.xhtml?faces-redirect=true";
+		return "/admin/usuarios.xhtml?faces-redirect=true";
 	}
 
 	public Usuario getUsuario() {

@@ -41,5 +41,26 @@ public class UsuarioRepository extends Repository<Usuario> {
 		}
 		
 	}
+	
+	
+	public List<Usuario> filtrarPorNome(String nome) {
+		try {
+			StringBuffer jpql = new StringBuffer();
+			jpql.append("SELECT ");
+			jpql.append(" u ");
+			jpql.append("FROM ");
+			jpql.append(" Usuario u ");
+			jpql.append("WHERE ");
+			jpql.append(" LOWER(u.nome) LIKE LOWER(:nome)");
+
+			Query query = getEntityManager().createQuery(jpql.toString());
+		
+			query.setParameter("nome", "%" + nome + "%");
+
+			return query.getResultList();
+		} catch (NoResultException error) {
+			return null;
+		}
+	}
 
 }

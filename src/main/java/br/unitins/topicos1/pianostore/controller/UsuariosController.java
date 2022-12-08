@@ -19,6 +19,7 @@ public class UsuariosController implements Serializable {
 	private static final long serialVersionUID = 8826311835173736094L;
 	
 	private List<Usuario> listaUsuario;
+	private String termoFiltro = null;
 	
 	public List<Usuario> getListaUsuario() {
 		if (listaUsuario == null) {
@@ -31,7 +32,18 @@ public class UsuariosController implements Serializable {
 	}
 	
 	public String adicionar() {
-		return "formusuario.xhtml?faces-redirect=true";
+		return "/admin/formusuario.xhtml?faces-redirect=true";
+	}
+	
+	public List<Usuario> filtrar() {
+		UsuarioRepository repo = new UsuarioRepository();
+		System.out.println(getTermoFiltro());
+		listaUsuario = repo.filtrarPorNome(getTermoFiltro());
+		
+		if (listaUsuario == null)
+			listaUsuario = new ArrayList<Usuario>();
+		
+		return listaUsuario;
 	}
 	
 	public String editar(Usuario usuario) {
@@ -42,13 +54,21 @@ public class UsuariosController implements Serializable {
 		
 		flash.put("flashUsuario", usuario);
 		
-		return "formusuario.xhtml?faces-redirect=true";
+		return "/admin/formusuario.xhtml?faces-redirect=true";
 	}
 	
 	public void excluir(Usuario usuario) {
-		
+		UsuarioRepository repo = new UsuarioRepository();
+		repo.deletar(usuario);
+		listaUsuario = null;
 	}
 	
-	
+	public String getTermoFiltro() {
+		return termoFiltro;
+	}
 
+	public void setTermoFiltro(String termoFiltro) {
+		this.termoFiltro = termoFiltro;
+	}
+	
 }

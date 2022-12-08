@@ -48,13 +48,6 @@ body .ui-panelgrid .ui-panelgrid-cell {
 							var="obj" itemLabel="#{obj.label}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="Estado: " />
-					<p:selectOneMenu value="#{formUsuarioController.usuario.estado}">
-						<f:selectItem itemLabel="Selecione um Estado ..." />
-						<f:selectItems value="#{formUsuarioController.listaEstado}"
-							var="obj" itemLabel="#{obj.nome}" />
-					</p:selectOneMenu>
-
 					<p:outputLabel value="Login: " />
 					<p:inputText id="itLogin"
 						value="#{formUsuarioController.usuario.login}">

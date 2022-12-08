@@ -19,14 +19,10 @@ public class Usuario extends DefaultEntity implements Cloneable {
 	private LocalDate dataNascimento;
 
 	private Perfil perfil;
-	
+
 	@OneToOne
 	@JoinColumn(name = "id_endereco", unique = true)
 	private Endereco endereco;
-
-	@ManyToOne
-	@JoinColumn(name = "id_estado")
-	private Estado estado;
 
 	public Usuario getClone() {
 		try {
@@ -74,14 +70,6 @@ public class Usuario extends DefaultEntity implements Cloneable {
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
 	}
 
 }

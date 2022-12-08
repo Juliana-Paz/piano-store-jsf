@@ -10,7 +10,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.topicos1.pianostore.application.Util;
-import br.unitins.topicos1.pianostore.model.Estado;
 import br.unitins.topicos1.pianostore.model.Perfil;
 import br.unitins.topicos1.pianostore.model.Usuario;
 import br.unitins.topicos1.pianostore.repository.EstadoRepository;
@@ -23,16 +22,7 @@ public class UsuarioController implements Serializable {
 	private static final long serialVersionUID = 168067236765100328L;
 	private Usuario usuario = null;
 	private List<Usuario> listaUsuario;
-	private List<Estado> listaEstado;
-	
-	public List<Estado> getListaEstado() {
-		if (listaEstado == null) { 
-			EstadoRepository repo = new EstadoRepository();
-			listaEstado = repo.buscarTodos();
-		}
-		return listaEstado;
-	}
-	
+
 	public Perfil[] getListaPerfil() {
 		return Perfil.values();
 	}
