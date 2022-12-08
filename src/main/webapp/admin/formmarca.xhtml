@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/newtemplate.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<p:growl id="growl" />
+			<div class="card">
+				<h2 style="text-align: center;">Cadastro de Marcas</h2>
+				<style>
+/* reset on the showcase style*/
+body .ui-panelgrid .ui-panelgrid-cell {
+	background-color: transparent;
+}
+
+/* example use of styles for your form */
+.my-heading-row {
+	background-color: var(- -surface-c);
+	font-weight: bold;
+}
+</style>
+
+				<p:panelGrid columns="4"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+					layout="grid" styleClass="ui-panelgrid-blank ui-fluid"
+					style="border:0px none; background-color:transparent;">
+
+					<p:outputLabel value="Nome: " />
+					<p:inputText id="nome"
+						value="#{formMarcaController.marca.nome}" />
+
+
+					<p:row>
+						<p:column styleClass="ui-grid-col-12">
+							<p:commandButton styleClass="mr-2" style="width: auto"
+								value="Salvar" action="#{formMarcaController.salvar}"
+								process="@form" update="growl" />
+							<p:commandButton styleClass="mr-2" style="width: auto"
+								value="Cancelar" action="#{formMarcaController.cancelar}"
+								process="@this">
+							</p:commandButton>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

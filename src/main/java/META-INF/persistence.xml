@@ -15,7 +15,9 @@
 		<class>br.unitins.topicos1.pianostore.model.Pagamento</class>
 		<class>br.unitins.topicos1.pianostore.model.Remedio</class>
 		<class>br.unitins.topicos1.pianostore.model.Usuario</class>
-		
+		<class>br.unitins.topicos1.pianostore.model.Marca</class>
+
+
 		<properties>
 			<!-- DB Driver -->
 			<property name="javax.persistence.jdbc.driver"

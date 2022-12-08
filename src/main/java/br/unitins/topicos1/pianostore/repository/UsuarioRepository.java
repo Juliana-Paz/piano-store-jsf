@@ -51,7 +51,7 @@ public class UsuarioRepository extends Repository<Usuario> {
 			jpql.append("FROM ");
 			jpql.append(" Usuario u ");
 			jpql.append("WHERE ");
-			jpql.append(" LOWER(u.nome) LIKE LOWEE(:nome)");
+			jpql.append(" LOWER(u.nome) LIKE LOWER(:nome)");
 
 			Query query = getEntityManager().createQuery(jpql.toString());
 		
