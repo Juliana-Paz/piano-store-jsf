@@ -14,7 +14,7 @@
 		<class>br.unitins.topicos1.pianostore.model.Estado</class>
 		<class>br.unitins.topicos1.pianostore.model.ItemCompra</class>
 		<class>br.unitins.topicos1.pianostore.model.Pagamento</class>
-		<class>br.unitins.topicos1.pianostore.model.Remedio</class>
+		<class>br.unitins.topicos1.pianostore.model.Instrumento</class>
 		<class>br.unitins.topicos1.pianostore.model.Usuario</class>
 		<class>br.unitins.topicos1.pianostore.model.Marca</class>
 		<class>br.unitins.topicos1.pianostore.model.SubTipo</class>

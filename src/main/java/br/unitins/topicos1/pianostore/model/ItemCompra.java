@@ -15,8 +15,8 @@ public class ItemCompra extends DefaultEntity {
 	private Compra compra;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_remedio")
-	private Remedio remedio;
+	@JoinColumn(name = "id_instrumento")
+	private Instrumento instrumento;
 
 	public int getQuantidade() {
 		return quantidade;
@@ -34,12 +34,12 @@ public class ItemCompra extends DefaultEntity {
 		this.preco = preco;
 	}
 
-	public Remedio getRemedio() {
-		return remedio;
+	public Instrumento getInstrumento() {
+		return instrumento;
 	}
 
-	public void setRemedio(Remedio remedio) {
-		this.remedio = remedio;
+	public void setInstrumento(Instrumento instrumento) {
+		this.instrumento = instrumento;
 	}
 
 	public Compra getCompra() {

@@ -66,7 +66,7 @@
 									minHeight="40" width="850" showEffect="fade">
 									<p:dataTable var="item" value="#{obj.listaItemCompra}">
 										<p:column headerText="Produto">
-											<h:outputText value="#{item.remedio.nome}" />
+											<h:outputText value="#{item.instrumento.nome}" />
 										</p:column>
 
 										<p:column headerText="Quantidade">
@@ -75,7 +75,7 @@
 
 
 										<p:column headerText="Preço (Unidade)">
-											<h:outputText value="#{item.remedio.preco}">
+											<h:outputText value="#{item.instrumento.preco}">
 												<f:convertNumber currencySymbol="R$" type="currency" />
 											</h:outputText>
 										</p:column>
@@ -83,7 +83,7 @@
 
 										<p:column headerText="Preço Total">
 											<h:outputText style="font-weight: bold; "
-												value="#{item.remedio.preco * item.quantidade}">
+												value="#{item.instrumento.preco * item.quantidade}">
 												<f:convertNumber currencySymbol="R$" type="currency" />
 											</h:outputText>
 										</p:column>

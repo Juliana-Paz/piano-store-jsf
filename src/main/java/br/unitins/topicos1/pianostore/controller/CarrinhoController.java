@@ -13,8 +13,8 @@ import javax.inject.Named;
 import br.unitins.topicos1.pianostore.application.Session;
 import br.unitins.topicos1.pianostore.application.Util;
 import br.unitins.topicos1.pianostore.model.Compra;
+import br.unitins.topicos1.pianostore.model.Instrumento;
 import br.unitins.topicos1.pianostore.model.ItemCompra;
-import br.unitins.topicos1.pianostore.model.Remedio;
 import br.unitins.topicos1.pianostore.model.Usuario;
 
 @ViewScoped
@@ -70,7 +70,7 @@ public class CarrinhoController implements Serializable {
 		return (Usuario) session.get("usuarioLogado");
 	}
 
-	public void adicionarCarrinho(Remedio remedio) {
+	public void adicionarCarrinho(Instrumento remedio) {
 		Compra carrinho;
 		Session session = Session.getInstance();
 		if (session.get("carrinho") != null) {
@@ -85,18 +85,18 @@ public class CarrinhoController implements Serializable {
 
 		// buscando um item na lista do carrinho
 		Optional<ItemCompra> opItem = carrinho.getListaItemCompra().stream()
-				.filter(item -> item.getRemedio().equals(remedio)).findAny();
+				.filter(item -> item.getInstrumento().equals(remedio)).findAny();
 
 		ItemCompra item = opItem.orElse(new ItemCompra());
 
 		item.setPreco(remedio.getPreco());
-		item.setRemedio(remedio);
+		item.setInstrumento(remedio);
 		item.setQuantidade(item.getQuantidade() + 1);
 
 		// buscando se existe um item no carrinho para alterar
 		int indice = -1;
 		for (int index = 0; index < carrinho.getListaItemCompra().size(); index++) {
-			if (carrinho.getListaItemCompra().get(index).getRemedio().equals(remedio)) {
+			if (carrinho.getListaItemCompra().get(index).getInstrumento().equals(remedio)) {
 				indice = index;
 				break;
 			}
@@ -110,10 +110,10 @@ public class CarrinhoController implements Serializable {
 		// adicionando na sessao
 		session.put("carrinho", carrinho);
 
-		Util.addInfoMessage(item.getRemedio().getNome() + " adicionado ao carrinho.");
+		Util.addInfoMessage(item.getInstrumento().getNome() + " adicionado ao carrinho.");
 	}
 
-	public void removerCarrinho(Remedio remedio) {
+	public void removerCarrinho(Instrumento remedio) {
 		Compra carrinho;
 		Session session = Session.getInstance();
 		if (session.get("carrinho") != null) {
@@ -126,7 +126,7 @@ public class CarrinhoController implements Serializable {
 			carrinho.setListaItemCompra(new ArrayList<ItemCompra>());
 
 		Optional<ItemCompra> opItem = carrinho.getListaItemCompra().stream()
-				.filter(item -> item.getRemedio().equals(remedio)).findAny();
+				.filter(item -> item.getInstrumento().equals(remedio)).findAny();
 		
 		ItemCompra item = opItem.orElse(new ItemCompra());
 
@@ -136,7 +136,7 @@ public class CarrinhoController implements Serializable {
 
 		int indice = -1;
 		for (int index = 0; index < carrinho.getListaItemCompra().size(); index++) {
-			if (carrinho.getListaItemCompra().get(index).getRemedio().equals(remedio)) {
+			if (carrinho.getListaItemCompra().get(index).getInstrumento().equals(remedio)) {
 				indice = index;
 				break;
 			}
@@ -149,6 +149,6 @@ public class CarrinhoController implements Serializable {
 
 		session.put("carrinho", carrinho);
 
-		Util.addInfoMessage(item.getRemedio().getNome() + " removido do carrinho.");
+		Util.addInfoMessage(item.getInstrumento().getNome() + " removido do carrinho.");
 	}
 }

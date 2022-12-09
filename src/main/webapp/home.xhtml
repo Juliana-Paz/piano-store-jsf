@@ -6,10 +6,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="newtemplate.xhtml">
+<ui:composition template="/newtemplate.xhtml">
 	<ui:define name="content">
 		<h:form id="form">
-			<p:dataView var="remedio" value="#{homeController.listaRemedio}"
+			<p:dataView var="instrumento" value="#{homeController.listaInstrumento}"
 				rows="6" paginator="true"
 				currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} produtos"
 				rowsPerPageTemplate="6,12,18"
@@ -23,37 +23,37 @@
 					<p:card
 						style="text-align:center; line-height: 1.5; font-size: large; padding: 0;">
 						<f:facet name="header">
-		        		#{remedio.nome}
+		        		#{instrumento.nome}
 		        	</f:facet>
 						<h:panelGrid columns="1" style="width:100%; padding-bottom: 10px;">
-							<p:graphicImage library="images" name="remedio.png" width="40%" />
+							<p:graphicImage library="images" url="https://img.freepik.com/psd-premium/piano-classico-isometrico_28315-906.jpg?w=2000" width="70%" />
 
 							<h:outputText style="font-weight: bold; "
-								value="#{remedio.preco}">
+								value="#{instrumento.preco}">
 								<f:convertNumber currencySymbol="R$" type="currency" />
 							</h:outputText>
 
 							<p:commandButton value="Adicionar ao Carrinho"
 								icon="pi pi-shopping-cart"
 								style="font-size: medium; margin-top: 10px; width: 50%;"
-								actionListener="#{homeController.adicionarCarrinho(remedio)}"
+								actionListener="#{homeController.adicionarCarrinho(instrumento)}"
 								process="@this" update="@([id$=carrinhoContador])" />
 
 							<p:commandButton value="Ver detalhes" type="button"
 								icon="pi pi-plus"
 								style="font-size: medium; margin-top: 10px; width: 50%;"
-								onclick="PF('#{remedio.id}').show()" />
+								onclick="PF('#{instrumento.id}').show()" />
 
-							<p:dialog header="#{remedio.nome}" widgetVar="#{remedio.id}"
+							<p:dialog header="#{instrumento.nome}" widgetVar="#{instrumento.id}"
 								minHeight="40" width="350" showEffect="fade">
 								<p style="text-align: justify;">
 									<h:outputText value="Descrição: " style="font-weight: bold;" />
-									<h:outputText value="#{remedio.descricao}" />
+									<h:outputText value="#{instrumento.descricao}" />
 
 								</p>
 								<p style="text-align: left;">
 									<h:outputText value="Preço " style="font-weight: bold;" />
-									<h:outputText value="#{remedio.preco}">
+									<h:outputText value="#{instrumento.preco}">
 										<f:convertNumber currencySymbol="R$" type="currency" />
 									</h:outputText>
 								</p>
@@ -61,7 +61,7 @@
 								<p style="text-align: left;">
 									<h:outputText value="Quantidade em Estoque "
 										style="font-weight: bold;" />
-									<h:outputText value="#{remedio.estoque}" />
+									<h:outputText value="#{instrumento.estoque}" />
 								</p>
 
 							</p:dialog>

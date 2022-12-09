@@ -14,30 +14,29 @@ import javax.inject.Named;
 import br.unitins.topicos1.pianostore.application.Session;
 import br.unitins.topicos1.pianostore.application.Util;
 import br.unitins.topicos1.pianostore.model.Compra;
+import br.unitins.topicos1.pianostore.model.Instrumento;
 import br.unitins.topicos1.pianostore.model.ItemCompra;
-import br.unitins.topicos1.pianostore.model.Remedio;
-import br.unitins.topicos1.pianostore.repository.RemedioRepository;
+import br.unitins.topicos1.pianostore.repository.InstrumentoRepository;
 
 @RequestScoped
 @Named
 public class HomeController {
 
 	@Inject
-	private RemedioRepository repository;
-	private List<Remedio> listaRemedio;
+	private InstrumentoRepository repository;
+	private List<Instrumento> listaInstrumento;
 
 	@PostConstruct
 	public void init() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		Object resultado = flash.get("pesquisaRemedio");
-		// verificando se teve consulta de remedio pela pesquisa no template
+		Object resultado = flash.get("pesquisaInstrumento");
 		if (resultado != null)
-			setListaRemedio((ArrayList<Remedio>) resultado);
+			setListaInstrumento((ArrayList<Instrumento>) resultado);
 		else
-			setListaRemedio(repository.buscarTodos());
+			setListaInstrumento(repository.buscarTodos());
 	}
 
-	public void adicionarCarrinho(Remedio remedio) {
+	public void adicionarCarrinho(Instrumento instrumento) {
 
 		Compra carrinho;
 
@@ -54,18 +53,18 @@ public class HomeController {
 
 		// buscando um item na lista do carrinho
 		Optional<ItemCompra> opItem = carrinho.getListaItemCompra().stream()
-				.filter(item -> item.getRemedio().equals(remedio)).findAny();
+				.filter(item -> item.getInstrumento().equals(instrumento)).findAny();
 
 		ItemCompra item = opItem.orElse(new ItemCompra());
 
-		item.setPreco(remedio.getPreco());
-		item.setRemedio(remedio);
+		item.setPreco(instrumento.getPreco());
+		item.setInstrumento(instrumento);
 		item.setQuantidade(item.getQuantidade() + 1);
 
 		// buscando se existe um item no carrinho para alterar
 		int indice = -1;
 		for (int index = 0; index < carrinho.getListaItemCompra().size(); index++) {
-			if (carrinho.getListaItemCompra().get(index).getRemedio().equals(remedio)) {
+			if (carrinho.getListaItemCompra().get(index).getInstrumento().equals(instrumento)) {
 				indice = index;
 				break;
 			}
@@ -79,16 +78,16 @@ public class HomeController {
 		// adicionando na sessao
 		session.put("carrinho", carrinho);
 
-		Util.addInfoMessage(item.getRemedio().getNome() + " adicionado ao carrinho.");
+		Util.addInfoMessage(item.getInstrumento().getNome() + " adicionado ao carrinho.");
 
 	}
 
-	public List<Remedio> getListaRemedio() {
-		return listaRemedio;
+	public List<Instrumento> getListaInstrumento() {
+		return listaInstrumento;
 	}
 
-	public void setListaRemedio(List<Remedio> listaRemedio) {
-		this.listaRemedio = listaRemedio;
+	public void setListaInstrumento(List<Instrumento> listaInstrumento) {
+		this.listaInstrumento = listaInstrumento;
 	}
 
 }

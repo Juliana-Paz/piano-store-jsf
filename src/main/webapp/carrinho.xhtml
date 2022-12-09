@@ -22,11 +22,11 @@
 			<div class="card">
 				<p:dataTable var="item" value="#{carrinhoController.itensCarrinho}">
 					<p:column>
-						<p:graphicImage library="images" name="remedio.png" width="15%" />
+						<p:graphicImage library="images" name="instrumento.png" width="15%" />
 					</p:column>
 
 					<p:column headerText="Produto">
-						<h:outputText value="#{item.remedio.nome}" />
+						<h:outputText value="#{item.instrumento.nome}" />
 					</p:column>
 
 					<p:column headerText="Quantidade">
@@ -34,7 +34,7 @@
 					</p:column>
 
 					<p:column headerText="Preço (Unidade)">
-						<h:outputText value="#{item.remedio.preco}">
+						<h:outputText value="#{item.instrumento.preco}">
 							<f:convertNumber currencySymbol="R$" type="currency" />
 						</h:outputText>
 					</p:column>
@@ -42,7 +42,7 @@
 
 					<p:column headerText="Preço Total">
 						<h:outputText style="font-weight: bold; "
-							value="#{item.remedio.preco * item.quantidade}">
+							value="#{item.instrumento.preco * item.quantidade}">
 							<f:convertNumber currencySymbol="R$" type="currency" />
 						</h:outputText>
 					</p:column>
@@ -50,13 +50,13 @@
 					<p:column headerText="Ação">
 
 						<p:commandButton title="Adicionar" icon="pi pi-minus"
-							actionListener="#{carrinhoController.removerCarrinho(item.remedio)}"
+							actionListener="#{carrinhoController.removerCarrinho(item.instrumento)}"
 							process="@this" update="@([id$=carrinhoContador]) formDataTable"
 							styleClass="rounded-button ui-button-danger ui-button-outlined" />
 
 						<span />
 						<p:commandButton title="Adicionar" icon="pi pi-plus"
-							actionListener="#{carrinhoController.adicionarCarrinho(item.remedio)}"
+							actionListener="#{carrinhoController.adicionarCarrinho(item.instrumento)}"
 							process="@this" update="@([id$=carrinhoContador]) formDataTable"
 							styleClass="rounded-button ui-button-primary ui-button-outlined" />
 					</p:column>

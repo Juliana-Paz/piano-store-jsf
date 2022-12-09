@@ -13,7 +13,7 @@ import br.unitins.topicos1.pianostore.application.Session;
 import br.unitins.topicos1.pianostore.model.Compra;
 import br.unitins.topicos1.pianostore.model.ItemCompra;
 import br.unitins.topicos1.pianostore.model.Usuario;
-import br.unitins.topicos1.pianostore.repository.RemedioRepository;
+import br.unitins.topicos1.pianostore.repository.InstrumentoRepository;
 
 @Named
 @ViewScoped
@@ -24,11 +24,11 @@ public class TemplateController implements Serializable {
 	private String nomeRemedio;
 	
 	@Inject
-	private RemedioRepository remedioRepository;
+	private InstrumentoRepository remedioRepository;
 	
 	public String pesquisarRemedio() {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		flash.put("pesquisaRemedio", remedioRepository.buscarPeloNome(getNomeRemedio()));
+		flash.put("pesquisaInstrumento", remedioRepository.filtrarPorNome(getNomeRemedio()));
 		return "home.xhtml?faces-redirect=true";
 	}
 	
