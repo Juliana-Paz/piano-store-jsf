@@ -58,13 +58,11 @@ public class FinalizarCompraController implements Serializable {
 		Session session = Session.getInstance();
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 
-		// validando o usuario
 		if (usuario == null) {
 			Util.addErrorMessage("Faça o login antes de finalizar a compra");
 			return;
 		}
 
-		// validando a bandeira do cartao
 		if (getPagamento().getTipoPagamento().equals(TipoPagamento.CREDITO)
 				|| getPagamento().getTipoPagamento().equals(TipoPagamento.DEBITO)) {
 			if (getPagamento().getBandeiraCartao() == null) {
@@ -77,12 +75,10 @@ public class FinalizarCompraController implements Serializable {
 		carrinho.setPagamento(getPagamento());
 		carrinho.setTotal(getTotalCarrinho());
 
-		// preenchendo a compra para cada item do carrinho
 		for (ItemCompra item : carrinho.getListaItemCompra()) {
 			item.setCompra(carrinho);
 		}
 
-		// setanto a data e hora
 		carrinho.setDataHora(LocalDateTime.now());
 
 		try {

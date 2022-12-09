@@ -11,9 +11,9 @@
 		<div class="container">
 			<p:card style="width: 28em; padding: 1rem;" styleClass="box"
 				title="Registrar">
-				<span class="ui-float-label"> <p:inputText id="login"
-						style="width:100%" value="#{registrarController.usuario.login}" />
-					<p:outputLabel for="@previous" value="Login" />
+				<span class="ui-float-label"> <p:inputText id="email" type="email"
+						style="width:100%" value="#{registrarController.usuario.email}" />
+					<p:outputLabel for="@previous" value="Email" />
 				</span>
 				<br />
 				<span class="ui-float-label"> <p:inputText id="nome"
@@ -28,7 +28,7 @@
 				<f:facet name="footer">
 					<p:commandButton icon="pi pi-check" value="Registrar"
 						action="#{registrarController.registrar}"
-						process="@this login senha nome" update="@form" />
+						process="@this email senha nome" update="@form" />
 					<p:commandButton icon="pi pi-times" resetValues="true"
 						value="Cancelar" styleClass="ui-button-secondary"
 						style="margin-left: .5em" />

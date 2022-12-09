@@ -24,6 +24,7 @@ public class RegistrarController implements Serializable {
 
 	public String registrar() {
 		getUsuario().setPerfil(Perfil.CLIENTE);
+		getUsuario().setAtivo(true);
 		getUsuario().setSenha(Util.hash(getUsuario().getSenha()));
 		UsuarioRepository repo = new UsuarioRepository();
 		

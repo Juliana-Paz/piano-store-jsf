@@ -32,31 +32,33 @@ body .ui-panelgrid .ui-panelgrid-cell {
 					<p:inputText id="itNome"
 						value="#{formUsuarioController.usuario.nome}" />
 
+					<p:outputLabel value="Email:" />
+					<p:inputText id="itEmail" type="email"
+						value="#{formUsuarioController.usuario.email}" />
+
+
 					<p:outputLabel value="Data Nascimento: " />
 					<p:datePicker id="itDataNascimento"
 						value="#{formUsuarioController.usuario.dataNascimento}"
 						showIcon="true">
 						<f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
-
 					</p:datePicker>
 
 
 					<p:outputLabel value="Perfil: " />
 					<p:selectOneMenu value="#{formUsuarioController.usuario.perfil}">
-						<f:selectItem itemLabel="Selecione um Perfil ..." />
+						<f:selectItem itemLabel="Selecione um Perfil..." />
 						<f:selectItems value="#{formUsuarioController.listaPerfil}"
 							var="obj" itemLabel="#{obj.label}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="Login: " />
-					<p:inputText id="itLogin"
-						value="#{formUsuarioController.usuario.login}">
 
-					</p:inputText>
 					<p:outputLabel value="Senha: " />
 					<p:password value="#{formUsuarioController.usuario.senha}"
 						immediate="true" />
 
+					<p:outputLabel value="Ativo " />
+					<p:toggleSwitch value="#{formUsuarioController.usuario.ativo}" />
 
 					<p:row>
 						<p:column styleClass="ui-grid-col-12">

@@ -15,7 +15,7 @@ public class UsuarioRepository extends Repository<Usuario> {
 		return query.getResultList();
 	}
 	
-	public Usuario buscar(String login, String senha) throws RepositoryException {
+	public Usuario buscar(String email, String senha) throws RepositoryException {
 		
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT "); 
@@ -23,18 +23,18 @@ public class UsuarioRepository extends Repository<Usuario> {
 		jpql.append("FROM ");
 		jpql.append("  Usuario u ");
 		jpql.append("WHERE ");
-		jpql.append("  u.login = :pLogin AND ");
-		jpql.append("  u.senha = :pSenha ");
+		jpql.append("  u.email = :pEmail AND ");
+		jpql.append("  u.senha = :pSenha AND ");
+		jpql.append("  u.ativo = true ");
 		
 		Query query = getEntityManager().createQuery(jpql.toString());
-		query.setParameter("pLogin", login);
+		query.setParameter("pEmail", email);
 		query.setParameter("pSenha", senha);
 		
 		try {
-			// o metodo getSingleResult gera um eception quando nao existe um resultado
 			return (Usuario)query.getSingleResult();
 		} catch (NoResultException e) {
-			throw new RepositoryException("Login ou senha Inv�lido");
+			throw new RepositoryException("Dados de usuário inválidos.");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

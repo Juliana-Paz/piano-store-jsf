@@ -12,7 +12,6 @@ import javax.inject.Named;
 import br.unitins.topicos1.pianostore.application.Util;
 import br.unitins.topicos1.pianostore.model.Perfil;
 import br.unitins.topicos1.pianostore.model.Usuario;
-import br.unitins.topicos1.pianostore.repository.EstadoRepository;
 import br.unitins.topicos1.pianostore.repository.UsuarioRepository;
 
 @Named
@@ -27,10 +26,10 @@ public class UsuarioController implements Serializable {
 		return Perfil.values();
 	}
 	
-	public void validarLogin() {
-		if (getUsuario().getLogin().equals("teste123")) {
+	public void validarEmail() {
+		if (getUsuario().getEmail().equals("teste123")) {
 			FacesMessage message = new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "Este login ja existe.", null);
+					FacesMessage.SEVERITY_ERROR, "Este email já existe.", null);
 			FacesContext.getCurrentInstance().addMessage(null, message);
 		}
 	}
@@ -46,7 +45,6 @@ public class UsuarioController implements Serializable {
 			return;
 		}
 		limpar();
-		// foi setado como nulo para buscar no banco
 		listaUsuario = null;
 	}
 	
@@ -60,17 +58,14 @@ public class UsuarioController implements Serializable {
 			return;
 		}
 		limpar();
-		// foi setado como nulo para buscar no banco
 		listaUsuario = null;
 	}
 	
-	// acionado pelo botao excluir
 	public void excluir() {
 		excluir(getUsuario());
 		limpar();	
 	}
 	
-	// acionado pelo botao da tabela (excluir)
 	public void excluir(Usuario usu) {
 		UsuarioRepository repo = new UsuarioRepository();
 		repo.deletar(usu);

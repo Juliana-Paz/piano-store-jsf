@@ -23,9 +23,8 @@ public class LoginController {
 		
 		Usuario usuarioLogado;
 		try {
-			usuarioLogado = repo.buscar(getUsuario().getLogin(), Util.hash(getUsuario().getSenha()));
+			usuarioLogado = repo.buscar(getUsuario().getEmail(), Util.hash(getUsuario().getSenha()));
 		} catch (RepositoryException e) {
-			// quando entrar nesse exception, significa que o usuario n�o foi encontrado
 			e.printStackTrace();
 			Util.addErrorMessage(e.getMessage());
 			return null;

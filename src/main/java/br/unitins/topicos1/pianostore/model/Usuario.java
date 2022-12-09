@@ -2,22 +2,28 @@ package br.unitins.topicos1.pianostore.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Usuario extends DefaultEntity implements Cloneable {
 
 	private String nome;
-	@NotBlank(message = "O login deve ser informado.")
-	private String login;
+	@Column(unique=true)
+	@NotNull
+	@NotBlank(message = "O email deve ser informado.")
+	private String email;
+	@NotNull
 	@NotBlank(message = "A senha deve ser informada.")
 	private String senha;
 	private LocalDate dataNascimento;
+	private boolean ativo = true;
 
+	@NotNull
 	private Perfil perfil;
 
 	@OneToOne
@@ -40,12 +46,12 @@ public class Usuario extends DefaultEntity implements Cloneable {
 		this.nome = nome;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {
@@ -70,6 +76,14 @@ public class Usuario extends DefaultEntity implements Cloneable {
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 }

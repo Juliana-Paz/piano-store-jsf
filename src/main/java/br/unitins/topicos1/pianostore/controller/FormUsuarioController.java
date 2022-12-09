@@ -23,9 +23,7 @@ public class FormUsuarioController implements Serializable {
 	private Usuario usuario = null;
 
 	public FormUsuarioController() {
-		// obtendo um usuario do flash scoped
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		// metodo que nao deixa apagar o objeto enquanto nao alterar a url
 		flash.keep("flashUsuario");
 		setUsuario((Usuario) flash.get("flashUsuario"));
 	}
@@ -38,19 +36,18 @@ public class FormUsuarioController implements Serializable {
 		UsuarioRepository repo = new UsuarioRepository();
 		try {
 			getUsuario().setSenha(Util.hash(getUsuario().getSenha()));
+			
 			repo.salvar(getUsuario());
 		} catch (Exception e) {
 			Util.addErrorMessage(e.getMessage());
 			e.printStackTrace();
 			return null;
 		}
-		// PARA HABILITAR O ENVIO DE MENSAGEM ENTRE TELAS DIFERENTES
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 
 		Util.addInfoMessage("Usuario salvo com sucesso.");
 
-		// o cancelar retorna para a pagina anterior
 		return cancelar();
 	}
 

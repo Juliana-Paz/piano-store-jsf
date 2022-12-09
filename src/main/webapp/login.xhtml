@@ -7,18 +7,19 @@
 </h:head>
 <h:body>
 	<h:form>
-		<p:growl id="messages" life="2000" />
+			<p:growl id="growl" showDetail="true" life="1600" />
+
 		<div class="container">
 			<p:card style="width: 25em" styleClass="box" title="Login" >
 			       
 				<span class="ui-float-label"> 
 					<p:inputText 
-						id="login"
+						id="email"
 						style="width:100%"
-						value="#{loginController.usuario.login}" /> 
+						value="#{loginController.usuario.email}" /> 
 					<p:outputLabel 
 						for="@previous"
-						value="Login" />
+						value="Email" />
 				</span>
 				<br/>
 				<span class="ui-float-label"> 
@@ -34,8 +35,8 @@
 						icon="pi pi-check" 
 						value="Entrar" 
 						action="#{loginController.logar}"
-						process="@this login senha"
-						update="@form"
+						process="@this email senha"
+						update="@form growl"
 						/>
 					<p:commandButton 
 						icon="pi pi-times" 
