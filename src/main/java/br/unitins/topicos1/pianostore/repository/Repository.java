@@ -23,7 +23,8 @@ public class Repository<T> {
 			getEntityManager().getTransaction().commit();
 		} catch (Exception e){
 			e.printStackTrace();
-			throw new Exception("Erro ao salvar. Procure um SAC.");
+			
+			throw new Exception("Erro ao salvar.");
 		}
 	}
 	

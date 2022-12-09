@@ -37,7 +37,7 @@
 								icon="pi pi-shopping-cart"
 								style="font-size: medium; margin-top: 10px; width: 50%;"
 								actionListener="#{homeController.adicionarCarrinho(instrumento)}"
-								process="@this" update="@([id$=carrinhoContador])" />
+								process="@this" update="@([id$=carrinhoContador]) growl" />
 
 							<p:commandButton value="Ver detalhes" type="button"
 								icon="pi pi-plus"

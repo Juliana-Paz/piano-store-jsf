@@ -57,7 +57,7 @@
 						<span />
 						<p:commandButton title="Adicionar" icon="pi pi-plus"
 							actionListener="#{carrinhoController.adicionarCarrinho(item.instrumento)}"
-							process="@this" update="@([id$=carrinhoContador]) formDataTable"
+							process="@this" update="@([id$=carrinhoContador]) formDataTable growl"
 							styleClass="rounded-button ui-button-primary ui-button-outlined" />
 					</p:column>
 				</p:dataTable>

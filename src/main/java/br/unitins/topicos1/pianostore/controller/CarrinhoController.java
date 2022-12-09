@@ -70,7 +70,7 @@ public class CarrinhoController implements Serializable {
 		return (Usuario) session.get("usuarioLogado");
 	}
 
-	public void adicionarCarrinho(Instrumento remedio) {
+	public void adicionarCarrinho(Instrumento instrumento) {
 		Compra carrinho;
 		Session session = Session.getInstance();
 		if (session.get("carrinho") != null) {
@@ -85,18 +85,24 @@ public class CarrinhoController implements Serializable {
 
 		// buscando um item na lista do carrinho
 		Optional<ItemCompra> opItem = carrinho.getListaItemCompra().stream()
-				.filter(item -> item.getInstrumento().equals(remedio)).findAny();
+				.filter(item -> item.getInstrumento().equals(instrumento)).findAny();
 
 		ItemCompra item = opItem.orElse(new ItemCompra());
 
-		item.setPreco(remedio.getPreco());
-		item.setInstrumento(remedio);
+		if(item.getQuantidade() + 1 > instrumento.getEstoque()) {
+			Util.addErrorMessage( "Não há itens no estoque.");
+			return;
+		}
+		
+		
+		item.setPreco(instrumento.getPreco());
+		item.setInstrumento(instrumento);
 		item.setQuantidade(item.getQuantidade() + 1);
 
 		// buscando se existe um item no carrinho para alterar
 		int indice = -1;
 		for (int index = 0; index < carrinho.getListaItemCompra().size(); index++) {
-			if (carrinho.getListaItemCompra().get(index).getInstrumento().equals(remedio)) {
+			if (carrinho.getListaItemCompra().get(index).getInstrumento().equals(instrumento)) {
 				indice = index;
 				break;
 			}
@@ -113,7 +119,7 @@ public class CarrinhoController implements Serializable {
 		Util.addInfoMessage(item.getInstrumento().getNome() + " adicionado ao carrinho.");
 	}
 
-	public void removerCarrinho(Instrumento remedio) {
+	public void removerCarrinho(Instrumento instrumento) {
 		Compra carrinho;
 		Session session = Session.getInstance();
 		if (session.get("carrinho") != null) {
@@ -126,7 +132,7 @@ public class CarrinhoController implements Serializable {
 			carrinho.setListaItemCompra(new ArrayList<ItemCompra>());
 
 		Optional<ItemCompra> opItem = carrinho.getListaItemCompra().stream()
-				.filter(item -> item.getInstrumento().equals(remedio)).findAny();
+				.filter(item -> item.getInstrumento().equals(instrumento)).findAny();
 		
 		ItemCompra item = opItem.orElse(new ItemCompra());
 
@@ -136,7 +142,7 @@ public class CarrinhoController implements Serializable {
 
 		int indice = -1;
 		for (int index = 0; index < carrinho.getListaItemCompra().size(); index++) {
-			if (carrinho.getListaItemCompra().get(index).getInstrumento().equals(remedio)) {
+			if (carrinho.getListaItemCompra().get(index).getInstrumento().equals(instrumento)) {
 				indice = index;
 				break;
 			}

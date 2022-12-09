@@ -25,14 +25,11 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest servletRequest = (HttpServletRequest) request;
 		String endereco = servletRequest.getRequestURI();
 
-		System.out.println(endereco);
-
 		HttpSession session = servletRequest.getSession(false);
 		Usuario usuarioLogado = null;
 		if (session != null)
 			usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 
-//		 se nao estiver logado, redirecionar para a pagina de login
 		if (usuarioLogado == null) {
 			((HttpServletResponse) response).sendRedirect("/PianoStore/faces/login.xhtml");
 		} else {

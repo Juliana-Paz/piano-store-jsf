@@ -44,13 +44,11 @@ public class FormInstrumentoController implements Serializable {
 			e.printStackTrace();
 			return null;
 		}
-		// PARA HABILITAR O ENVIO DE MENSAGEM ENTRE TELAS DIFERENTES
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.setKeepMessages(true);
 
 		Util.addInfoMessage("Instrumento salvo com sucesso.");
 
-		// o cancelar retorna para a pagina anterior
 		return cancelar();
 	}
 
