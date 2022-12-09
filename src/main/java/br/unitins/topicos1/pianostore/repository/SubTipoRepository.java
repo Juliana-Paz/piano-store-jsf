@@ -5,28 +5,28 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import br.unitins.topicos1.pianostore.model.Marca;
+import br.unitins.topicos1.pianostore.model.SubTipo;
 
-public class MarcaRepository extends Repository<Marca> {
+public class SubTipoRepository extends Repository<SubTipo> {
 
-	public Marca buscarPeloId(Integer id) {
-		return getEntityManager().find(Marca.class, id);
+	public SubTipo buscarPeloId(Integer id) {
+		return getEntityManager().find(SubTipo.class, id);
 	}
 
-	public List<Marca> buscarTodos() {
-		Query query = getEntityManager().createQuery("SELECT m FROM Marca m ORDER BY m.nome");
+	public List<SubTipo> buscarTodos() {
+		Query query = getEntityManager().createQuery("SELECT st FROM SubTipo st ORDER BY st.tipo");
 		return query.getResultList();
 	}
 
-	public List<Marca> filtrarPorNome(String nome) {
+	public List<SubTipo> filtrarPorNome(String nome) {
 		try {
 			StringBuffer jpql = new StringBuffer();
 			jpql.append("SELECT ");
-			jpql.append(" m ");
+			jpql.append(" st ");
 			jpql.append("FROM ");
-			jpql.append(" Marca m ");
+			jpql.append(" SubTipo st ");
 			jpql.append("WHERE ");
-			jpql.append(" LOWER(m.nome) LIKE LOWER(:nome)");
+			jpql.append(" LOWER(st.nome) LIKE LOWER(:nome)");
 
 			Query query = getEntityManager().createQuery(jpql.toString());
 

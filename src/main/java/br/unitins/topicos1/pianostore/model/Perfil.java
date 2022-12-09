@@ -6,7 +6,8 @@ public enum Perfil {
 	CLIENTE(2, "Cliente", List.of()),
 	ADMINISTRADOR(1, "Administrador",
 			List.of("/PianoStore/faces/admin/usuarios.xhtml", "/PianoStore/faces/admin/formusuario.xhtml",
-					"/PianoStore/faces/admin/marcas.xhtml", "/PianoStore/faces/admin/formmarca.xhtml"));
+					"/PianoStore/faces/admin/marcas.xhtml", "/PianoStore/faces/admin/formmarca.xhtml",
+					"/PianoStore/faces/admin/subtipos.xhtml", "/PianoStore/faces/admin/formsubtipo.xhtml"));
 
 	private List<String> paginas;
 
