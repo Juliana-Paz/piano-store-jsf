@@ -38,7 +38,15 @@
 						styleClass="mr-1" style="font-size: 10px" id="carrinhoContador"
 						value="#{templateController.getQuantidadeCarrinho()}">
 					</p:badge>
-				</a> <a> <h:outputLabel
+				</a>
+				
+				<a href="login.xhtml"> <h:outputLabel
+						rendered="#{templateController.usuarioLogado == null}">
+     
+      			Login
+      		</h:outputLabel>
+				</a>
+				 <a href="perfil.xhtml"> <h:outputLabel
 						rendered="#{templateController.usuarioLogado != null}">
      
       			Olá #{templateController.usuarioLogado.nome}
