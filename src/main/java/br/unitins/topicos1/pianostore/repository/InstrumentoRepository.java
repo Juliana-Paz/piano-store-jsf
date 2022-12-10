@@ -15,7 +15,8 @@ public class InstrumentoRepository extends Repository<Instrumento> {
 
 	public List<Instrumento> buscarTodos() {
 		try {
-			Query query = getEntityManager().createQuery("SELECT i FROM Instrumento i ORDER BY i.nome");
+			Query query = getEntityManager()
+					.createQuery("SELECT i FROM Instrumento i WHERE i.estoque > 0 ORDER BY i.nome ");
 			return query.getResultList();
 		} catch (Exception e) {
 			return new ArrayList<Instrumento>();
@@ -23,7 +24,6 @@ public class InstrumentoRepository extends Repository<Instrumento> {
 	}
 
 	public Instrumento buscarPeloId(Integer id) throws RepositoryException {
-
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
 		jpql.append("  i ");

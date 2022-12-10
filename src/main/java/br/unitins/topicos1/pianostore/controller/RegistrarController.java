@@ -27,20 +27,23 @@ public class RegistrarController implements Serializable {
 		getUsuario().setAtivo(true);
 		getUsuario().setSenha(Util.hash(getUsuario().getSenha()));
 		UsuarioRepository repo = new UsuarioRepository();
-		
+
 		try {
 			repo.salvar(getUsuario());
 			Util.addInfoMessage("Usuário criado com sucesso.");
 
 			Map session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 			session.put("usuarioLogado", getUsuario());
+
 			return "home.xhtml?faces-redirect=true";
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			Util.addErrorMessage(e.getMessage());
+			return null;
+
 		}
-		
-		return "registrar.xhtml?faces-redirect=true";
+
 	}
 
 	public Usuario getUsuario() {

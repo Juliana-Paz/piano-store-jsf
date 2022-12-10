@@ -56,7 +56,12 @@ public class HomeController {
 				.filter(item -> item.getInstrumento().equals(instrumento)).findAny();
 
 		ItemCompra item = opItem.orElse(new ItemCompra());
-
+		
+		if(item.getQuantidade() + 1 > instrumento.getEstoque()) {
+			Util.addErrorMessage( "Não há itens no estoque.");
+			return;
+		}
+		
 		item.setPreco(instrumento.getPreco());
 		item.setInstrumento(instrumento);
 		item.setQuantidade(item.getQuantidade() + 1);

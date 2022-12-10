@@ -15,11 +15,13 @@ import br.unitins.topicos1.pianostore.application.Session;
 import br.unitins.topicos1.pianostore.application.Util;
 import br.unitins.topicos1.pianostore.model.BandeiraCartao;
 import br.unitins.topicos1.pianostore.model.Compra;
+import br.unitins.topicos1.pianostore.model.Instrumento;
 import br.unitins.topicos1.pianostore.model.ItemCompra;
 import br.unitins.topicos1.pianostore.model.Pagamento;
 import br.unitins.topicos1.pianostore.model.TipoPagamento;
 import br.unitins.topicos1.pianostore.model.Usuario;
 import br.unitins.topicos1.pianostore.repository.CompraRepository;
+import br.unitins.topicos1.pianostore.repository.InstrumentoRepository;
 
 @ViewScoped
 @Named
@@ -78,6 +80,10 @@ public class FinalizarCompraController implements Serializable {
 		for (ItemCompra item : carrinho.getListaItemCompra()) {
 			item.setCompra(carrinho);
 		}
+		
+		for (ItemCompra item : carrinho.getListaItemCompra()) {
+			atualizarEstoque(item.getInstrumento(), item.getQuantidade());
+		}
 
 		carrinho.setDataHora(LocalDateTime.now());
 
@@ -106,6 +112,22 @@ public class FinalizarCompraController implements Serializable {
 		}
 
 		return valorTotal;
+
+	}
+
+	public void atualizarEstoque(Instrumento instrumento, Integer estoqueRetirado) {
+		InstrumentoRepository repo = new InstrumentoRepository();
+		try {
+			instrumento.setEstoque(instrumento.getEstoque() - estoqueRetirado);
+			repo.salvar(instrumento);
+		} catch (Exception e) {
+			Util.addErrorMessage(e.getMessage());
+			e.printStackTrace();
+		}
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.setKeepMessages(true);
+
+		Util.addInfoMessage("Instrumento salvo com sucesso.");
 
 	}
 
