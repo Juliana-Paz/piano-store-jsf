@@ -9,7 +9,7 @@
 	<h:form>
 			<p:growl id="growl" showDetail="true" life="1600" />
 
-		<div class="container">
+		<div class="container"  style="background-color: #694c3b96;">
 			<p:card style="width: 25em" styleClass="box" title="Login" >
 			       
 				<span class="ui-float-label"> 
@@ -37,12 +37,23 @@
 						action="#{loginController.logar}"
 						process="@this email senha"
 						update="@form growl"
+						style="
+						    border: none; 
+						    background-color: #b97a56; 
+						    font-size: medium; 
+						    margin-top: 10px; 
+						    width: 100%;"
 						/>
 					<p:commandButton 
 						icon="pi pi-times" 
 						resetValues="true"
 						value="Cancelar"
-						styleClass="ui-button-secondary" style="margin-left: .5em" />
+						style="
+						    border: none; 
+						    background-color: #b97a56; 
+						    font-size: medium; 
+						    margin-top: 10px; 
+						    width: 100%;" />
 				</f:facet>
 			</p:card>
 		</div>

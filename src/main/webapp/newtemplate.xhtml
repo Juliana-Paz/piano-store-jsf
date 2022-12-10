@@ -11,62 +11,64 @@
 		name="primeflex/3.2.0/primeflex.min.css" />
 </h:head>
 <h:body>
-
-	<div class="header jumbotron">
-		<p:graphicImage library="images" name="logo1.png" width="20%" />
-	</div>
-
-	<p:growl id="growl" showDetail="true" life="1600" />
-
-	<h:form>
-		<div class="topnav">
-
-			<div class="navsocial">
-				<a href="https://www.instagram.com/"> <i class="pi pi-instagram" /></a>
-				<a href="https://www.youtube.com/"> <i class="pi pi-youtube" /></a>
-				<a href="https://www.facebook.com/"> <i class="pi pi-facebook" /></a>
-			</div>
-
-			<div class="navmenu">
-				<a href="home.xhtml">Home</a> <a href="#">Pianos</a> <a href="#">Teclados</a>
-				<a href="#">Mais Vendidos</a>
-			</div>
-
-			<div class="navcarrinho" style="float: right">
-
-				<a href="carrinho.xhtml"> <i class="pi pi-shopping-cart" /> <p:badge
-						styleClass="mr-1" style="font-size: 10px" id="carrinhoContador"
-						value="#{templateController.getQuantidadeCarrinho()}">
-					</p:badge>
-				</a> <a> <h:outputLabel
-						rendered="#{templateController.usuarioLogado != null}">
-     
-      			Olá #{templateController.usuarioLogado.nome}
-      		</h:outputLabel>
-				</a> <a> <h:commandLink
-						rendered="#{templateController.usuarioLogado != null}"
-						action="#{templateController.encerrarSessao}">
-        		
-        		Sair
-        	</h:commandLink>
-				</a>
-
-			</div>
+	<div class="header1">
+		<div class="header jumbotron">
+			<p:graphicImage library="images" name="logo1.png" width="20%" />
 		</div>
-	</h:form>
-	<div class="row">
-
-		<div class="card">
-			<ui:insert name="content">
-
-
-			</ui:insert>
-		</div>
-
+	
+		<p:growl id="growl" showDetail="true" life="1600" />
+	
+		<h:form>
+			<div class="topnav">
+	
+				<div class="navsocial">
+					<a href="https://www.instagram.com/"> <i class="pi pi-instagram" /></a>
+					<a href="https://www.youtube.com/"> <i class="pi pi-youtube" /></a>
+					<a href="https://www.facebook.com/"> <i class="pi pi-facebook" /></a>
+				</div>
+	
+				<div class="navmenu">
+					<a href="home.xhtml">Home</a> <a href="#">Pianos</a> <a href="#">Teclados</a>
+				</div>
+	
+				<div class="navcarrinho" style="float: right">
+	
+					<a href="carrinho.xhtml"> <i class="pi pi-shopping-cart" /> <p:badge
+							styleClass="mr-1" style="font-size: 10px" id="carrinhoContador"
+							value="#{templateController.getQuantidadeCarrinho()}">
+						</p:badge>
+					</a> <a> <h:outputLabel
+							rendered="#{templateController.usuarioLogado != null}">
+	     
+	      			Olá #{templateController.usuarioLogado.nome}
+	      		</h:outputLabel>
+					</a> <a> <h:commandLink
+							rendered="#{templateController.usuarioLogado != null}"
+							action="#{templateController.encerrarSessao}">
+	        		
+	        		Sair
+	        	</h:commandLink>
+					</a>
+	
+				</div>
+			</div>
+		</h:form>
 	</div>
+	<main>
+		<div class="row">
+	
+			<div class="card">
+				<ui:insert name="content">
+	
+	
+				</ui:insert>
+			</div>
+	
+		</div>
+	</main>
 
 	<div class="footer">
-		<h2>Footer</h2>
+		<p>© 2022 Unitins. Todos os direitos reservados.</p>
 	</div>
 
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"

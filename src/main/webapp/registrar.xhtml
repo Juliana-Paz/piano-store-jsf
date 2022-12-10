@@ -8,7 +8,7 @@
 <h:body>
 	<h:form>
 		<p:growl id="messages" life="2000" />
-		<div class="container">
+		<div class="container" style="background-color: #694c3b96;">
 			<p:card style="width: 28em; padding: 1rem;" styleClass="box"
 				title="Registrar">
 				<span class="ui-float-label"> <p:inputText id="email" type="email"
@@ -28,10 +28,21 @@
 				<f:facet name="footer">
 					<p:commandButton icon="pi pi-check" value="Registrar"
 						action="#{registrarController.registrar}"
-						process="@this email senha nome" update="@form" />
+						process="@this email senha nome" update="@form"
+						style="
+						    border: none; 
+						    background-color: #b97a56; 
+						    font-size: medium; 
+						    margin-top: 10px; 
+						    width: 100%;"/>
 					<p:commandButton icon="pi pi-times" resetValues="true"
 						value="Cancelar" styleClass="ui-button-secondary"
-						style="margin-left: .5em" />
+						style="
+						    border: none; 
+						    background-color: #b97a56; 
+						    font-size: medium; 
+						    margin-top: 10px;
+						    width: 100%;" />
 				</f:facet>
 			</p:card>
 		</div>

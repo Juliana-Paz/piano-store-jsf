@@ -11,11 +11,16 @@
 		<h1 style="text-align: center;">
 			<p:commandButton value="Finalizar Compra"
 				actionListener="#{carrinhoController.finalizarCompra}"
-				update="growl">
+				update="growl"
+				style="border: none; 
+								    background-color: #b97a56; 
+								    font-size: medium; 
+								    margin-top: 10px;">
 				<p:confirm disabled="#{templateController.usuarioLogado != null}"
 					header="Logar no Sistema"
 					message="Para concluir, é necessário estar logado. Deseja ir para a tela de login?"
-					icon="pi pi-exclamation-triangle" />
+					icon="pi pi-exclamation-triangle" 
+					style=""/>
 			</p:commandButton>
 		</h1>
 		<h:form id="formDataTable">

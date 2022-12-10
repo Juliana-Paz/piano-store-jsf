@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 * {
 	box-sizing: border-box;
@@ -6,8 +7,8 @@
 
 body {
 	font-family: "Open Sans", 'sans-serif';
-	padding: 10px;
 	background: #f1f1f1;
+	margin: 0;
 }
 
 /* Header/Blog Title */
@@ -17,16 +18,13 @@ body {
 	color: #b97a56;
 }
 
-.header h1 {
-	font-size: 50px;
-}
-
-/* Style the top navigation bar */
 .topnav {
+	margin-bottom: 1px;
 	overflow: hidden;
 	background: white;
 	display: flex;
-	justify-content: space-around
+	justify-content: space-around;
+	margin-bottom: 2px;
 }
 
 /* Style the topnav links */
@@ -52,7 +50,6 @@ body {
 .navsocial a:hover {
 	color: #197576;
 }
-
 
 /* Create two unequal columns that floats next to each other */
 /* Left column */
@@ -80,7 +77,9 @@ body {
 .card {
 	background-color: white;
 	padding: 20px;
-	margin-top: 20px;
+}
+.header1 {
+
 }
 
 /* Clear floats after the columns */
@@ -94,8 +93,11 @@ body {
 .footer {
 	padding: 20px;
 	text-align: center;
-	background: #ddd;
-	margin-top: 20px;
+	background: #2c2c2c;
+	color: white;
+	font-size: 15px;
+	font-weight: lighter;
+	
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
