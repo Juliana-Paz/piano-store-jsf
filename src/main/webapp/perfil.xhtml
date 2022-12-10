@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="newtemplate.xhtml">
+	<ui:define name="content">
+		<!-- Container -->
+		<div class="container-fluid">
+			<div class="row justify-content-md-center">
+				<div class="col-md-6 col-md-auto login-box">
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<h1 class="text-center wdi-red">Perfil de Usuário</h1>
+						</div>
+					</div>
+					<h:form id="formDataTable">
+						<div style="width: 100; display: flex; justify-content: center;">
+							<div style="display: flex; width: 50%; margin-bottom: 2em">
+
+
+								<p:panelGrid columns="2">
+									<f:facet name="header">
+										<p:graphicImage style="width: 20%"
+											url="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png" />
+									</f:facet>
+
+									<h:outputText style="font-weight: bold" value="Nome" />
+									<h:outputText value="#{perfilController.usuario.nome}" />
+
+									<h:outputText style="font-weight: bold" value="Email" />
+									<h:outputText value="#{perfilController.usuario.email}" />
+
+									<h:outputText style="font-weight: bold" value="Categoria" />
+									<h:outputText value="#{perfilController.usuario.perfil.label}" />
+
+									<h:outputText style="font-weight: bold"
+										value="Data de Nascimento" />
+									<h:outputText
+										value="#{perfilController.usuario.dataNascimento}">
+										<f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+									</h:outputText>
+
+									<p:commandButton value="Editar Perfil"
+										action="#{perfilController.editarPerfil()}">
+
+									</p:commandButton>
+
+								</p:panelGrid>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+
+</html>
