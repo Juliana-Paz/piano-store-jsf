@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="newtemplate.xhtml">
+	<ui:define name="content">
+
+		<h:messages errorStyle="color:red" warnStyle="color:orange"
+			infoStyle="color:green" globalOnly="false" />
+
+		<!-- Container -->
+		<div class="container-fluid">
+			<div class="row justify-content-md-center">
+				<div class="col-md-6 col-md-auto login-box">
+					<h:messages styleClass="alert alert-danger hmessages" />
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<h1 class="text-center wdi-red">Compra confirmada!!!</h1>
+						</div>
+					</div>
+					<h:form id="formDataTable">
+						<div style="width: 100; display: flex; justify-content: center;">
+							<div style="display: flex; width: 50%; margin-bottom: 2em">
+
+								<p:graphicImage library="images" name="remedio.png" width="40%" />
+
+								<div>
+									<p:dataTable var="item"
+										value="#{compraFinalizadaController.compra.listaItemCompra}">
+										<p:column headerText="Produto">
+											<h:outputText value="#{item.instrumento.nome}" />
+										</p:column>
+
+										<p:column headerText="Quantidade">
+											<h:outputText value="#{item.quantidade}" />
+										</p:column>
+
+
+										<p:column headerText="Preço (Unidade)">
+											<h:outputText value="#{item.instrumento.preco}">
+												<f:convertNumber currencySymbol="R$" type="currency" />
+											</h:outputText>
+										</p:column>
+
+
+										<p:column headerText="Preço Total">
+											<h:outputText style="font-weight: bold; "
+												value="#{item.instrumento.preco * item.quantidade}">
+												<f:convertNumber currencySymbol="R$" type="currency" />
+											</h:outputText>
+										</p:column>
+
+									</p:dataTable>
+									<p style="text-align: left;">
+										<h:outputText style="font-weight: bold;"
+											value="Total da Compra: " />
+										<h:outputText
+											value="#{compraFinalizadaController.compra.total}">
+											<f:convertNumber currencySymbol="R$" type="currency" />
+										</h:outputText>
+									</p>
+
+									<p style="text-align: left;">
+										<h:outputText style="font-weight: bold;"
+											value="Tipo de Pagamento: " />
+										<h:outputLabel
+											value="#{compraFinalizadaController.compra.pagamento.tipoPagamento}" />
+									</p>
+
+									<p style="text-align: left;">
+										<h:outputText style="font-weight: bold;"
+											value="Quantidade de Parcelas: " />
+										<h:outputLabel
+											value="#{compraFinalizadaController.compra.pagamento.quantidadeParcela}" />
+									</p>
+
+									<p style="text-align: left;">
+										<h:outputText style="font-weight: bold;"
+											value="Data da Compra: " />
+										<h:outputLabel
+											value="#{compraFinalizadaController.compra.dataHora}">
+											<f:convertDateTime type="localDate"
+												pattern="dd-MM-yyyy hh:mm:ss" />
+										</h:outputLabel>
+									</p>
+
+									<p:commandButton value="Ver Histórico de Compras"
+										actionListener="#{compraFinalizadaController.irParaHistorico}"
+										style="border: none; 
+								    background-color: #b97a56; 
+								    font-size: medium; 
+								    margin-top: 10px;" />
+								</div>
+
+							</div>
+
+
+						</div>
+
+					</h:form>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>
+
+</html>

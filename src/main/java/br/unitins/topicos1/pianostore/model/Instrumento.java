@@ -11,11 +11,16 @@ public class Instrumento extends DefaultEntity {
 	private String descricao;
 	private Double preco;
 	private Integer estoque;
+	private String imagem;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_subtipo")
 	private SubTipo subTipo;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "id_marca")
+	private Marca marca;
+
 	public String getNome() {
 		return nome;
 	}
@@ -55,7 +60,21 @@ public class Instrumento extends DefaultEntity {
 	public void setSubTipo(SubTipo subTipo) {
 		this.subTipo = subTipo;
 	}
-	
-	
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
 
 }

@@ -1,6 +1,7 @@
 package br.unitins.topicos1.pianostore.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
@@ -10,10 +11,11 @@ import javax.inject.Named;
 
 import br.unitins.topicos1.pianostore.application.Util;
 import br.unitins.topicos1.pianostore.model.Instrumento;
+import br.unitins.topicos1.pianostore.model.Marca;
 import br.unitins.topicos1.pianostore.model.Perfil;
 import br.unitins.topicos1.pianostore.model.SubTipo;
-import br.unitins.topicos1.pianostore.repository.EstadoRepository;
 import br.unitins.topicos1.pianostore.repository.InstrumentoRepository;
+import br.unitins.topicos1.pianostore.repository.MarcaRepository;
 import br.unitins.topicos1.pianostore.repository.SubTipoRepository;
 
 @Named
@@ -23,9 +25,9 @@ public class FormInstrumentoController implements Serializable {
 	private static final long serialVersionUID = -4197665569375141413L;
 	private Instrumento instrumento = null;
 	private List<SubTipo> listaSubTipo;
+	private List<Marca> listaMarca;
 
 	public FormInstrumentoController() {
-		// obtendo um instrumento do flash scoped
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.keep("flashInstrumento");
 		setInstrumento((Instrumento) flash.get("flashInstrumento"));
@@ -73,7 +75,22 @@ public class FormInstrumentoController implements Serializable {
 		}
 		return listaSubTipo;
 	}
+	
 
+	public List<Marca> getListaMarca() {
+		if (listaMarca == null) {
+			MarcaRepository repo = new MarcaRepository();
+			listaMarca = repo.buscarTodos();
+			if (listaMarca == null)
+				listaMarca = new ArrayList<Marca>();
+		}
+		return listaMarca;
+	}
+
+	public void setListaMarca(List<Marca> listaMarca) {
+		this.listaMarca = listaMarca;
+	}
+	
 	public void setListaSubTipo(List<SubTipo> listaSubTipo) {
 		this.listaSubTipo = listaSubTipo;
 	}

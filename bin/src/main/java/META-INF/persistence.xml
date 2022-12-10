@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="PianoStore">
+		<class>br.unitins.topicos1.pianostore.converter.jpa.PerfilConverter</class>
+		<class>br.unitins.topicos1.pianostore.converter.jpa.TipoConverter</class>
+		<class>br.unitins.topicos1.pianostore.converter.jpa.TipoPagamentoConverter</class>
+		<class>br.unitins.topicos1.pianostore.model.Cidade</class>
+		<class>br.unitins.topicos1.pianostore.model.Compra</class>
+		<class>br.unitins.topicos1.pianostore.model.DefaultEntity</class>
+		<class>br.unitins.topicos1.pianostore.model.Endereco</class>
+		<class>br.unitins.topicos1.pianostore.model.Estado</class>
+		<class>br.unitins.topicos1.pianostore.model.ItemCompra</class>
+		<class>br.unitins.topicos1.pianostore.model.Pagamento</class>
+		<class>br.unitins.topicos1.pianostore.model.Instrumento</class>
+		<class>br.unitins.topicos1.pianostore.model.Usuario</class>
+		<class>br.unitins.topicos1.pianostore.model.Marca</class>
+		<class>br.unitins.topicos1.pianostore.model.SubTipo</class>
+
+		<properties>
+			<!-- DB Driver -->
+			<property name="javax.persistence.jdbc.driver"
+				value="org.postgresql.Driver" />
+
+			<!-- BD Name -->
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:postgresql://localhost:5432/pianostore" />
+
+			<!-- DB User -->
+			<property name="javax.persistence.jdbc.user"
+				value="topicos1" />
+
+			<!-- DB Password -->
+			<property name="javax.persistence.jdbc.password"
+				value="123456" />
+
+			<!-- DB Dialect -->
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.PostgreSQLDialect" />
+
+			<!-- create / create-drop / update / none -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+
+			<!-- Show SQL in console -->
+			<property name="hibernate.show_sql" value="true" />
+
+			<!-- Show SQL formatted -->
+			<property name="hibernate.format_sql" value="true" />
+		</properties>
+
+	</persistence-unit>
+</persistence>
